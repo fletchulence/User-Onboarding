@@ -4,17 +4,17 @@ export default function UserForm(props){
   const { formVals, submitForm, updateForm } = props;
   
   const onChange = (evt) =>{
-    const {name, value} = evt.target;
-
-
-    updateForm(name, value)
+    const {name, value, checked, type} = evt.target;
+    const valueToUse = type === 'checkbox' ? checked : value;
+    
+    updateForm(name, valueToUse)
   }
 
   const onSubmit = (evt) =>{
     evt.preventDefault()
     submitForm()
   } 
-
+  
   return(
     <form className="container form" onSubmit={onSubmit}>
       <h2> add your friend! </h2>
@@ -41,7 +41,7 @@ export default function UserForm(props){
           </label>
         </div> {/* end of name div */}
         <div className='email'>
-          <label> Email:
+          <label> Email: 
             <input
               type='text' //TODO: change back to email
               name='email'
@@ -51,18 +51,29 @@ export default function UserForm(props){
           </label>
         </div>
         <div className='password'>
-          <label> Password:
+          <label> Password: 
             <input
-              type='password' //TODO: change back to email
+              type='text' //TODO: change back to password
               name='password'
               value={formVals.password}
               onChange={onChange}
               />
           </label>
         </div>
+        <div className='serviceTerms'>
+          <label> Terms of Service: 
+            <input
+              type='checkbox' //TODO: change back to password
+              name='serviceTerms'
+              onChange={onChange}
+              checked={formVals.serviceTerms}
+              />
+          </label>
+        </div>
+        <button> SUBMIT </button>
       </div>{/* end of form-inputs div */}
     </form>
   )
-
-
+  
+  
 }

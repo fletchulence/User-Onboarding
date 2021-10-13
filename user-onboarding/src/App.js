@@ -1,7 +1,10 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 
+import axios from 'axios';
+
 import UserForm from './components/UserForm';
+import User from './components/User'
 
 const initialFormVals ={
   firstName: '',
@@ -12,9 +15,13 @@ const initialFormVals ={
 }
 
 function App() {
-
-  const [ user, setUser ] = useState([]);
+  const [ users, setUsers ] = useState([]);
   const [ formVals, setFormVals ] = useState(initialFormVals)
+
+  // const getUsers = () => {
+  //   axios.get(``)
+  // } 
+  console.log(users)
 
   const updateForm = (inputName, inputValue) =>{
     setFormVals({ ...formVals, [inputName]: inputValue })
@@ -26,8 +33,22 @@ function App() {
       lastName: formVals.lastName.trim(),
       email: formVals.email.trim(),
       password: formVals.password.trim(),
-
+      serviceTerms: formVals.serviceTerms //? is this correct?
     }
+    // console.log(newUser)
+    postNewUser(newUser)
+  }
+
+  const postNewUser = (newUser) =>{
+    axios.post(`https://reqres.in/api/users`, newUser)
+      .then( res=>{
+        // console.log(res.data)
+        setUsers([res.data, ...users])
+      })
+      .catch(err=>{
+        console.error(err)
+      })
+      .finally(() => setFormVals(initialFormVals))
   }
 
   return (
@@ -38,9 +59,17 @@ function App() {
         formVals={formVals}
         updateForm={updateForm}
         submitForm={submitForm}
-
       />
-    </div>
+
+      {
+        users.map((user, index) => {
+          return(
+            <User key={user.createdAt} user={user}/>
+          )
+        })
+      }
+
+    </div> /* end of APP return */
   );
 }
 
