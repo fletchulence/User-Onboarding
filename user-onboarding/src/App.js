@@ -21,7 +21,13 @@ function App() {
   }
   
   const submitForm = () =>{
+    const newUser={
+      firstName: formVals.firstName.trim(),
+      lastName: formVals.lastName.trim(),
+      email: formVals.email.trim(),
+      password: formVals.password.trim(),
 
+    }
   }
 
   return (
