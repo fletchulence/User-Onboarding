@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function UserForm(props){
-  const { formVals, submitForm, updateForm } = props;
+  const { formVals, submitForm, updateForm, formErrors, disabled } = props;
   
   const onChange = (evt) =>{
     const {name, value, checked, type} = evt.target;
@@ -18,6 +18,15 @@ export default function UserForm(props){
   return(
     <form className="container form" onSubmit={onSubmit}>
       <h2> add your friend! </h2>
+
+      {/* render your errors */}
+      <div className='errors'>
+        <div>{formErrors.firstName}</div>
+        <div>{formErrors.lastName}</div>
+        <div>{formErrors.email}</div>
+        <div>{formErrors.password}</div>
+        <div>{formErrors.serviceTerms}</div>
+      </div>
 
       <div className='form-inputs'>
         <h4> title of these inputs </h4>
@@ -70,7 +79,7 @@ export default function UserForm(props){
               />
           </label>
         </div>
-        <button> SUBMIT </button>
+        <button disabled={disabled}> SUBMIT </button>
       </div>{/* end of form-inputs div */}
     </form>
   )
