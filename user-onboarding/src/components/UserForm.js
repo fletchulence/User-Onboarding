@@ -52,7 +52,7 @@ export default function UserForm(props){
         <div className='email'>
           <label> Email: 
             <input
-              type='text' //TODO: change back to email
+              type='email'
               name='email'
               value={formVals.email}
               onChange={onChange}
@@ -62,7 +62,7 @@ export default function UserForm(props){
         <div className='password'>
           <label> Password: 
             <input
-              type='text' //TODO: change back to password
+              type='password'
               name='password'
               value={formVals.password}
               onChange={onChange}
@@ -72,7 +72,7 @@ export default function UserForm(props){
         <div className='serviceTerms'>
           <label> Terms of Service: 
             <input
-              type='checkbox' //TODO: change back to password
+              type='checkbox' 
               name='serviceTerms'
               onChange={onChange}
               checked={formVals.serviceTerms}

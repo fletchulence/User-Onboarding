@@ -35,7 +35,8 @@ function App() {
   // const getUsers = () => {
   //   axios.get(``)
   // } 
-  console.log(users)
+
+  // console.log(users)
 
   
   const submitForm = () =>{
@@ -65,7 +66,7 @@ function App() {
     yup.reach(schema, name).validate(value)
     .then(() => setFormErrors({ ...formErrors, [name]: ''}))
     .catch(err => {
-      // console.log(err)
+
       setFormErrors({ ...formErrors, [name]: err.errors[0]})
     })
   }
