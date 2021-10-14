@@ -1,5 +1,7 @@
 import React from "react";
 
+import { StyledContainer, StyledOverall } from "../Styles/styling";
+
 export default function UserForm(props){
   const { formVals, submitForm, updateForm, formErrors, disabled } = props;
   
@@ -16,22 +18,18 @@ export default function UserForm(props){
   } 
   
   return(
+    <StyledOverall> 
     <form className="container form" onSubmit={onSubmit}>
-      <h2> add your friend! </h2>
+      <h2> Please Sign up to join our club </h2>
 
-      {/* render your errors */}
-      <div className='errors'>
-        <div>{formErrors.firstName}</div>
-        <div>{formErrors.lastName}</div>
-        <div>{formErrors.email}</div>
-        <div>{formErrors.password}</div>
-        <div>{formErrors.serviceTerms}</div>
-      </div>
+      
 
       <div className='form-inputs'>
-        <h4> title of these inputs </h4>
-        <div className='name'> 
-        <h3>Name</h3>
+        <h3> Let us know more about you ! </h3>
+
+        <StyledContainer> 
+        <div className='container name'> 
+        <h5>Please provide your name below</h5>
           <label> First:
             <input
               type="text"
@@ -49,27 +47,40 @@ export default function UserForm(props){
               />
           </label>
         </div> {/* end of name div */}
-        <div className='email'>
-          <label> Email: 
-            <input
-              type='email'
-              name='email'
-              value={formVals.email}
-              onChange={onChange}
-              />
-          </label>
+        </StyledContainer>
+        <div className='container login'>
+          <p>We would like to start an account with you
+          <br/>can you please fill out a name and email for us to keep in touch?</p>
+          <StyledContainer>
+            <div className='login'>
+              <h5>Provide an email and password:</h5>
+              <div className='email'>
+                <label> Email: 
+                  <input
+                    type='email'
+                    name='email'
+                    value={formVals.email}
+                    onChange={onChange}
+                    />
+                </label>
+              </div>
+              <div className='password'>
+                <label> Password: 
+                  <input
+                    type='password'
+                    name='password'
+                    value={formVals.password}
+                    onChange={onChange}
+                    />
+                </label>
+              </div>
+            </div>
+          </StyledContainer>
         </div>
-        <div className='password'>
-          <label> Password: 
-            <input
-              type='password'
-              name='password'
-              value={formVals.password}
-              onChange={onChange}
-              />
-          </label>
-        </div>
+
+        
         <div className='serviceTerms'>
+          <h5> please agree to the terms of use:</h5>
           <label> Terms of Service: 
             <input
               type='checkbox' 
@@ -79,9 +90,18 @@ export default function UserForm(props){
               />
           </label>
         </div>
+        {/* render your errors */}
+        <div className='errors'>
+          <div>{formErrors.firstName}</div>
+          <div>{formErrors.lastName}</div>
+          <div>{formErrors.email}</div>
+          <div>{formErrors.password}</div>
+          <div>{formErrors.serviceTerms}</div>
+        </div>
         <button disabled={disabled}> SUBMIT </button>
       </div>{/* end of form-inputs div */}
     </form>
+    </StyledOverall>
   )
   
   
