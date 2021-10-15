@@ -98,7 +98,7 @@ export default function UserForm(props){
           <div>{formErrors.password}</div>
           <div>{formErrors.serviceTerms}</div>
         </div>
-        <button disabled={disabled}> SUBMIT </button>
+        <button id='submitBtn' disabled={disabled}> SUBMIT </button>
       </div>{/* end of form-inputs div */}
     </form>
     </StyledOverall>

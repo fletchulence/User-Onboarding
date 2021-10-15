@@ -14,12 +14,13 @@ const formSchema = yup.object().shape({
     .string()
     .trim()
     .email('valid emails are example@example.ex')
-    .min(7, 'email must be at least 7 characters'),
+    // .oneOf(['waffle@syrup.com'], 'That email is already taken')
+    .required('email is required'),
   password: yup
     .string()
     .trim()
-    .required('you need to make a password')
-    // .matches(['here'], 'this wont work')
+    // .matches(['%'], 'password must contain a %')
+    .required('a password is required')
     ,
   serviceTerms: yup
     .boolean()
